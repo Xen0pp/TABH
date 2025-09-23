@@ -7,8 +7,8 @@ import CustomRootProvider from "../providers/CustomRootProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Alumni Portal UAP",
-  description: "Connect with your alumni and friends",
+  title: "VIPS-TC Alumni Portal",
+  description: "Connect with VIPS Technical Campus alumni and build lasting professional networks",
 };
 
 // const myFont = localFont({

@@ -78,9 +78,9 @@ const data = {
   },
   teams: [
     {
-      name: "Alumni Portal",
+      name: "VIPS-TC Alumni Portal",
       logo: GalleryVerticalEnd,
-      plan: "UAP",
+      plan: "VIPS-TC",
     },
     {
       name: "Acme Corp.",

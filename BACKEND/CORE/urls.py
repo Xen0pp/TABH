@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
 
 from drf_yasg.views import get_schema_view  # type: ignore
 from drf_yasg import openapi  # type: ignore
@@ -25,15 +26,26 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+def api_root(request):
+    """Root API endpoint"""
+    return JsonResponse({
+        'message': 'Welcome to VIPS-TC Alumni Portal API',
+        'version': 'v1',
+        'endpoints': {
+            'admin': '/admin/',
+            'api': '/api/v1/',
+            'swagger': '/api/v1/swagger/',
+        }
+    })
 
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Alumni Portal API Documentation",
+        title="VIPS-TC Alumni Portal API Documentation",
         default_version="v1",
-        description="API documentation for Alumni Portal of University of Asia Pacific",
+        description="API documentation for VIPS-TC Alumni Portal",
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="atik.hasan.dev@gmail.com"),
+        contact=openapi.Contact(email="admin@vips-tc.edu"),
         license=openapi.License(name="MIT License"),
     ),
     public=True,
@@ -41,6 +53,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path("", api_root, name="api-root"),  
     path("admin/", admin.site.urls),
     path(
         "api/v1/",

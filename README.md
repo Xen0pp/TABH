@@ -1,11 +1,11 @@
-# Alumni-Portal
+# VIPS-TC Alumni Portal
 
 ````markdown
-# University of Asia Pacific Alumni Portal
+# Vivekananda Institute of Professional Studies - Technical Campus Alumni Portal
 
-This is the official repository for the University of Asia Pacific Alumni Portal.
+This is the official repository for the VIPS-TC Alumni Portal.
 The project aims to connect alumni, foster networking, and facilitate communication
-between graduates and the university community.
+between graduates and the technical campus community.
 
 ## Project Structure
 
@@ -188,7 +188,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgments
 
-Special thanks to the University of Asia Pacific for supporting this project.
+Special thanks to VIPS-TC for supporting this project.
 
 ---
 

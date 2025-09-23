@@ -210,7 +210,7 @@ const Login = () => {
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2 font-orbitron">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-                  UAP Alumni Network
+                  VIPS-TC Alumni Network
                 </span>
               </h1>
               <h1 className="text-xl md:text-xl lg:text-3xl font-semibold  ">
@@ -546,7 +546,7 @@ const LoginForm = () => {
       {/* don't have an account?  */}
       <div>
         <p className="text-sm mt-3">
-          Don&apos;t have an account and you have UAP Email ?{" "}
+          Don&apos;t have an account and you have VIPS-TC Email ?{" "}
           <Link
             id="signup"
             href={"/signup"}
@@ -556,7 +556,7 @@ const LoginForm = () => {
           </Link>
         </p>
         <p className="text-sm mt-3">
-          Don&apos;t have an account and you are an Alumni don't have UAP Email
+          Don&apos;t have an account and you are an Alumni don't have VIPS-TC Email
           ?{" "}
           <Link
             id="registration-request"
