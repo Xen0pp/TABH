@@ -3,18 +3,17 @@ from rest_framework import viewsets, filters
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
 # from rest_framework.authentication import TokenAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from .serializer import UserInfoSerializer, LoginSerializer,  UserRegisterSerializer, RoleSerializer
 from .models import UserInfo
-from cms.models import Role
+from cms.models import Role, RegistrationRequest, AlumniVerificationScore
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import LimitOffsetPagination
-from cms.models import RegistrationRequest
-
-
-
+import re
+from datetime import datetime
 
 # Create your views here.
 
@@ -39,9 +38,49 @@ class RegisterView(viewsets.GenericViewSet):
                     # user already exists
                     return Response({"message": "User already exists"}, status=400)
                 
-                # check if email is valid -- must end with @uap-bd.edu
-                if not serializer.validated_data['email'].endswith("@uap-bd.edu"):
-                    return Response({"message": "Email must be a valid UAP address"}, status=400)
+                # check if email is valid -- must end with @vipstc.edu.in
+                if not serializer.validated_data['email'].endswith("@vipstc.edu.in"):
+                    return Response({"message": "Email must be a valid VIPS-TC address (@vipstc.edu.in)"}, status=400)
+
+                # Check if this is an alumni registration (graduated students)
+                graduation_year = request.data.get('graduation_year')
+                student_id = request.data.get('student_id')
+                
+                # If graduation year and student ID provided, this is alumni registration
+                if graduation_year and student_id:
+                    # Create alumni registration request for approval
+                    from cms.models import RegistrationRequest
+                    
+                    alumni_request = RegistrationRequest.objects.create(
+                        firstName=serializer.validated_data['first_name'],
+                        lastName=serializer.validated_data['last_name'],
+                        email=serializer.validated_data['email'],
+                        phone=request.data.get('phone', ''),
+                        address=request.data.get('address', ''),
+                        graduationYear=graduation_year,
+                        batch=request.data.get('batch', ''),
+                        department=request.data.get('department', ''),
+                        studentId=student_id,
+                        currentCompany=request.data.get('current_company', ''),
+                        currentPosition=request.data.get('current_position', ''),
+                        experience=request.data.get('experience', 0),
+                        skills=request.data.get('skills', []),
+                        interests=request.data.get('interests', []),
+                        achievements=request.data.get('achievements', ''),
+                        facebook=request.data.get('facebook', ''),
+                        twitter=request.data.get('twitter', ''),
+                        linkedin=request.data.get('linkedin', ''),
+                        instagram=request.data.get('instagram', ''),
+                        isApproved=False  # Requires admin approval
+                    )
+                    
+                    return Response({
+                        "message": "Alumni registration submitted successfully! Your application is under review. You will be notified once approved.",
+                        "status": "pending_approval",
+                        "request_id": alumni_request.id
+                    }, status=status.HTTP_201_CREATED)
+                
+                # Otherwise, continue with regular student registration
 
                 # create user
                 user = User.objects.create_user(
@@ -60,16 +99,19 @@ class RegisterView(viewsets.GenericViewSet):
                
                 
                 # setting student role by default
-                role = Role.objects.filter(id=1).first()
+                role, created = Role.objects.get_or_create(
+                    id=1,
+                    defaults={
+                        'role_name': 'Student',
+                        'description': 'Current VIPS-TC student with institutional email'
+                    }
+                )
 
                 if not role:
                     user.delete()
-                    return Response({"message": "Role does not exist"}, status=400)
+                    return Response({"message": "Role creation failed"}, status=400)
 
                
-                if role is None:
-                    return Response({"message": "Role does not exist"}, status=400)
-                
                 # create user info
                 user_info = UserInfo.objects.create(
                     user=user,
@@ -251,3 +293,66 @@ class UserRolesView(viewsets.GenericViewSet):
         return Response({"status": status.HTTP_200_OK, "results": serializer.data})
     
 
+class AlumniVerificationService:
+    """Service class for alumni verification scoring"""
+    
+    @staticmethod
+    def validate_student_id_format(student_id):
+        """Validate VIPS-TC student ID format"""
+        # Assuming format: VIPS/TC/YEAR/NUMBER (e.g., VIPS/TC/2020/001)
+        pattern = r'^VIPS/TC/\d{4}/\d{3,4}$'
+        if re.match(pattern, student_id.upper()):
+            return 2  # Perfect format
+        elif 'VIPS' in student_id.upper() and any(char.isdigit() for char in student_id):
+            return 1  # Partial match
+        return 0
+    
+    @staticmethod
+    def validate_graduation_year(year):
+        """Validate graduation year"""
+        current_year = datetime.now().year
+        if 2000 <= year <= current_year:
+            if current_year - 5 <= year <= current_year:  # Recent graduates
+                return 2
+            else:  # Older graduates
+                return 1
+        return 0
+    
+    @staticmethod
+    def validate_linkedin_profile(linkedin_url):
+        """Basic LinkedIn profile validation"""
+        if linkedin_url and 'linkedin.com' in linkedin_url.lower():
+            if 'vips' in linkedin_url.lower() or 'vivekananda' in linkedin_url.lower():
+                return 2  # Profile mentions VIPS
+            else:
+                return 1  # Valid LinkedIn profile
+        return 0
+    
+    @staticmethod
+    def validate_documents(cv_file, proof_file):
+        """Validate uploaded documents"""
+        score = 0
+        if cv_file:
+            score += 1
+        if proof_file:
+            score += 1
+        return score
+    
+    @classmethod
+    def calculate_alumni_score(cls, registration_data):
+        """Calculate total alumni verification score"""
+        student_id_score = cls.validate_student_id_format(registration_data.get('studentId', ''))
+        graduation_year_score = cls.validate_graduation_year(registration_data.get('graduationYear', 0))
+        linkedin_score = cls.validate_linkedin_profile(registration_data.get('linkedin', ''))
+        document_score = cls.validate_documents(
+            registration_data.get('cv'), 
+            registration_data.get('proofDocument')
+        )
+        
+        return {
+            'student_id_score': student_id_score,
+            'graduation_year_score': graduation_year_score,
+            'linkedin_score': linkedin_score,
+            'document_score': document_score,
+            'total_score': student_id_score + graduation_year_score + linkedin_score + document_score
+        }

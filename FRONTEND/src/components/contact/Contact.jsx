@@ -129,21 +129,21 @@ const Contact = () => {
                       <ContactItem
                         icon={<MapPin size={20} />}
                         title="Address"
-                        content="University of Asia Pacific, 74/A, Green Road, Dhaka 1205, Bangladesh"
+                        content="Vivekananda Institute of Professional Studies - Technical Campus AU- Block (Outer Ring Road) Pitampura, Delhi - 110034"
                         isDark={isDark}
                       />
                       <ContactItem
                         icon={<Phone size={20} />}
                         title="Phone"
-                        content="+880 9613 803213"
+                        content="+91 (11) 27341019"
                         isDark={isDark}
                       />
                       <ContactItem
                         icon={<Mail size={20} />}
                         title="Email"
-                        content="info@uap-bd.edu"
+                        content="vipsedu@vips.edu"
                         isLink={true}
-                        href="mailto:info@uap-bd.edu"
+                        href="mailto:vipsedu@vips.edu"
                         isDark={isDark}
                       />
                     </div>

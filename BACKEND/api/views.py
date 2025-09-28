@@ -1,9 +1,10 @@
 from rest_framework import viewsets, permissions, filters  # type: ignore
 from .serializers import serializers
-from cms.models import Blog, Job, Event, NewsFeed, Post, Comment, RegistrationRequest
+from cms.models import Blog, Job, Event, NewsFeed, Post, Comment, RegistrationRequest, AlumniVerificationScore
 from authorization.models import UserInfo
 from authorization.serializer import UserInfoSerializer
-
+from authorization.views import AlumniVerificationService
+from django.contrib.auth.models import User
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet  # type: ignore
 from django_filters import CharFilter  # type: ignore
 from django_filters import NumberFilter  # type: ignore
@@ -111,7 +112,7 @@ class JobViewSet(viewsets.GenericViewSet):
         """
         instance = self.get_object()
         serializer = self.get_serializer(instance)
-        return Response({"status": status.HTTP_200_OK, "result": serializer.data}, status=status.HTTP_200_OK)
+        return Response({"status": status.HTTP_200_OK, "result": serializer.data})
 
     def create(self, request, *args, **kwargs):
         """
@@ -508,8 +509,96 @@ class RegistrationRequestView(viewsets.GenericViewSet):
     filterset_fields = {
         # "role": ["id"],  
     }
-    # ordering_fields = ["first_name", "last_name", "email", "id", 'created_at', 'updated_at']
-    # ordering = ["-first_name"]
+
+    def create(self, request):
+        """Enhanced alumni registration with auto-approval scoring"""
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                # Check if user already exists
+                existing_user = User.objects.filter(email=serializer.validated_data['email']).first()
+                if existing_user:
+                    return Response({
+                        "message": "User with this email already exists"
+                    }, status=status.HTTP_400_BAD_REQUEST)
+                
+                # Calculate alumni verification score
+                verification_scores = AlumniVerificationService.calculate_alumni_score(serializer.validated_data)
+                
+                # Create verification score record
+                alumni_verification = AlumniVerificationScore.objects.create(
+                    email=serializer.validated_data['email'],
+                    student_id=serializer.validated_data.get('studentId', ''),
+                    graduation_year=serializer.validated_data.get('graduationYear', 0),
+                    department=serializer.validated_data.get('department', ''),
+                    linkedin_profile=serializer.validated_data.get('linkedin', ''),
+                    student_id_score=verification_scores['student_id_score'],
+                    graduation_year_score=verification_scores['graduation_year_score'],
+                    linkedin_score=verification_scores['linkedin_score'],
+                    document_score=verification_scores['document_score'],
+                    total_score=verification_scores['total_score']
+                )
+                
+                # Check if auto-approval criteria is met
+                if alumni_verification.is_auto_approvable():
+                    # Auto-approve and create user account
+                    user = User.objects.create_user(
+                        username=serializer.validated_data['email'],
+                        email=serializer.validated_data['email'],
+                        first_name=serializer.validated_data['firstName'],
+                        last_name=serializer.validated_data['lastName'],
+                        password='temp_password_123'  # User will reset via email
+                    )
+                    
+                    # Create UserInfo profile
+                    UserInfo.objects.create(
+                        user=user,
+                        first_name=serializer.validated_data['firstName'],
+                        last_name=serializer.validated_data['lastName'],
+                        email=serializer.validated_data['email'],
+                        phone=serializer.validated_data.get('phone', ''),
+                        address=serializer.validated_data.get('address', ''),
+                        graduation_year=serializer.validated_data.get('graduationYear'),
+                        batch=serializer.validated_data.get('batch'),
+                        current_company=serializer.validated_data.get('currentCompany', ''),
+                        current_position=serializer.validated_data.get('currentPosition', ''),
+                        experience=str(serializer.validated_data.get('experience', '')),
+                        skills=serializer.validated_data.get('skills', []),
+                        interests=serializer.validated_data.get('interests', []),
+                        achievements=serializer.validated_data.get('achievements', ''),
+                        linkedin=serializer.validated_data.get('linkedin', ''),
+                    )
+                    
+                    alumni_verification.verification_status = 'auto_approved'
+                    alumni_verification.save()
+                    
+                    return Response({
+                        "message": "Congratulations! Your alumni registration has been automatically approved.",
+                        "status": "auto_approved",
+                        "verification_score": verification_scores['total_score'],
+                        "next_steps": "Please check your email for login instructions."
+                    }, status=status.HTTP_201_CREATED)
+                
+                else:
+                    # Create registration request for manual review
+                    registration_request = serializer.save()
+                    alumni_verification.verification_status = 'manual_review'
+                    alumni_verification.save()
+                    
+                    return Response({
+                        "message": "Your alumni registration has been submitted for review.",
+                        "status": "manual_review",
+                        "verification_score": verification_scores['total_score'],
+                        "required_score": alumni_verification.auto_approval_threshold,
+                        "next_steps": "Our team will review your application within 3-5 business days."
+                    }, status=status.HTTP_201_CREATED)
+                    
+            except Exception as e:
+                return Response({
+                    "message": f"Registration failed: {str(e)}"
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def list(self, request):
         
@@ -552,29 +641,6 @@ class RegistrationRequestView(viewsets.GenericViewSet):
         instance.delete()
         return Response({"status": status.HTTP_200_OK, "message": "Registration request deleted successfully."})
     
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        print(f"serializer = {serializer}")
-        if serializer.is_valid():
-            serializer.save()
-            return Response(
-                {
-                    "status": status.HTTP_201_CREATED,
-                    "message": "Registration request created successfully.",
-                    "data": serializer.data,
-                },
-                status=status.HTTP_201_CREATED
-            )
-        return Response(
-            {
-                "status": status.HTTP_400_BAD_REQUEST,
-                "message": "Invalid data provided.",
-                "errors": serializer.errors,
-            },
-            status=status.HTTP_400_BAD_REQUEST
-        )
-
-
     @action(detail=True, methods=['put'], permission_classes=[permissions.IsAuthenticated])
     def approve(self, request, *args, **kwargs):
         instance = self.get_object()

@@ -23,7 +23,7 @@ const InfoItem = ({ label, value }) => {
           {value.map((item, index) => (
             <span
               key={index}
-              className="px-2 py-1 text-xs rounded-full bg-purple-900/50 text-purple-200 border border-purple-700"
+              className="px-2 py-1 text-xs rounded-full bg-vips-maroon-600/50 text-purple-200 border border-purple-700"
             >
               {item}
             </span>

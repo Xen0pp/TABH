@@ -18,7 +18,7 @@ const EventsContainer = () => {
   };
 
   return (
-    <section className="min-h-screen rounded-xl pt-10 bg-gradient-to-br from-[#0F0F0F] to-[#1E1E1E] p-6">
+    <section className="min-h-screen rounded-xl pt-10 bg-gradient-to-br from-vips-cream to-white dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="container mx-auto w-full py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

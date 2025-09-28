@@ -44,6 +44,26 @@ export const useGetUsers = ({ limit = 10, offset = 0, role = "" }) => {
   });
 };
 
+export const useGetUsersByRoleName = ({ limit = 10, offset = 0, roleName = "" }) => {
+  const queryClient = useQueryClient();
+  const { data: session } = useSession();
+
+  return useQuery({
+    queryKey: ["users", limit, offset, roleName],
+    queryFn: async () =>
+      await axiosRequest({
+        url: `/auth/users/?limit=${limit}&offset=${offset}&role_name=${roleName}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries("users");
+    },
+  });
+};
+
 export const useGetUserInfo = (id) => {
   const queryClient = useQueryClient();
   const { data: session } = useSession();

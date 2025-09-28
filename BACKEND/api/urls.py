@@ -18,5 +18,7 @@ urlpatterns = [
     # path('', views.blog_list, name='blog_list'),
     path("", include(router.urls)),
     path('posts/<int:post_id>/comments/', CommentListGetCreateView.as_view(), name='comment-list-create'),
-
+    
+    # Mentorship System URLs
+    path('mentorship/', include('api.mentorship_urls')),
 ]

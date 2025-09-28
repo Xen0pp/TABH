@@ -11,7 +11,7 @@ export default function StepIndicator({ steps, currentStep }) {
 
         {/* Animated progress bar */}
         <motion.div
-          className="absolute h-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full"
+          className="absolute h-1 bg-gradient-to-r from-red-500 to-maroon-500 rounded-full"
           initial={{ width: "0%" }}
           animate={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
           transition={{ duration: 0.5 }}
@@ -23,7 +23,7 @@ export default function StepIndicator({ steps, currentStep }) {
             <motion.div
               className={`w-8 h-8 rounded-full flex items-center justify-center z-10 ${
                 index <= currentStep
-                  ? "bg-gradient-to-r from-purple-500 to-blue-500"
+                  ? "bg-gradient-to-r from-vips-maroon-500 to-vips-maroon-900"
                   : "bg-gray-700"
               }`}
               initial={{ scale: 0.8 }}
@@ -31,7 +31,7 @@ export default function StepIndicator({ steps, currentStep }) {
                 scale: index === currentStep ? 1.1 : 1,
                 boxShadow:
                   index === currentStep
-                    ? "0 0 15px rgba(124,58,237,0.7)"
+                    ? "0 0 15px rgba(172, 7, 7, 0.7)"
                     : "none",
               }}
               transition={{ duration: 0.3 }}

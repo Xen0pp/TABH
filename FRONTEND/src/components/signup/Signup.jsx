@@ -44,6 +44,7 @@
 "use client";
 import { useRegister, useSendOtp } from "../../hooks/tanstack/useAuth";
 import { signupSchema } from "../../validationSchema/authentication";
+import ProcessingPing from "../shared/ProcessingPing";
 
 import React, { useState } from "react";
 import PasswordInput from "../ui/password-input";
@@ -245,8 +246,8 @@ const Signup = () => {
 
                 {/* plage logo */}
                 <Image
-                  src="/assets/logo.png"
-                  alt="Plage Logo"
+                  src="/assets/vips.jpg"
+                  alt="VIPS-TC Logo"
                   width={200}
                   height={200}
                   quality={100}
@@ -254,8 +255,8 @@ const Signup = () => {
                 />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2 font-orbitron">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-                  UAP Alumni Network
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-vips-maroon to-vips-maroon-dark">
+                  VIPS-TC Alumni Network
                 </span>
               </h1>
               <h1 className="text-xl md:text-xl lg:text-3xl font-semibold  ">
@@ -263,16 +264,16 @@ const Signup = () => {
                 <TypewriterEffectSmooth
                   words={[
                     {
-                      text: "Create",
+                      text: "Connect",
                     },
                     {
-                      text: "your",
+                      text: "with",
                     },
                     {
-                      text: "account",
+                      text: "VIPS-TC",
                     },
                     {
-                      text: "now!",
+                      text: "Alumni!",
                     },
                   ]}
                 />
@@ -315,12 +316,12 @@ const Signup = () => {
             </motion.div> */}
 
             {/* CTA Button (Mobile Only) */}
-            {/* <motion.div variants={itemVariants} className="lg:hidden">
-              <button className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-medium flex items-center justify-center gap-2 hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-[0_0_15px_rgba(124,58,237,0.5)]">
+            <motion.div variants={itemVariants} className="lg:hidden">
+              <button className="w-full py-3 px-6 bg-gradient-to-r from-vips-maroon to-vips-maroon-dark text-white rounded-full font-medium flex items-center justify-center gap-2 hover:from-vips-maroon-dark hover:to-vips-maroon transition-all duration-300 shadow-[0_0_15px_rgba(152,41,41,0.5)]">
                 Register Now
                 <ArrowRight size={18} />
               </button>
-            </motion.div> */}
+            </motion.div>
           </motion.div>
         </div>
 
@@ -359,7 +360,12 @@ export const UniversityLogo = ({
 export default Signup;
 
 const SignUpForm = () => {
-  const { mutateAsync, isPending } = useRegister();
+  const { mutate: register, isPending, error } = useRegister();
+
+  // Debug: Log the API URL being used
+  console.log("API Base URL:", process.env.NEXT_PUBLIC_API_URL);
+  console.log("Full signup URL:", `${process.env.NEXT_PUBLIC_API_URL}/auth/signup/`);
+
   const router = useRouter();
 
   const [isOtpSent, setIsOtpSent] = useState(false);
@@ -420,7 +426,7 @@ const SignUpForm = () => {
       };
 
       try {
-        const res = await mutateAsync(payload);
+        const res = await register(payload);
 
         enqueueSnackbar(res?.message || "Account created successfully", {
           variant: "default",

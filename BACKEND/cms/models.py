@@ -2,34 +2,17 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import JSONField
-# from authorization.models import UserInfo
-# from authorization.models import UserInfo
 
 
 # Create your models here.
 class Blog(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField(null=True, blank=True)
-    # date = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
     updated_at = models.DateTimeField(default=timezone.now, null=True, blank=True)
 
     def __str__(self):
         return self.title
-
-
-# class User(models.Model):
-#     name = models.CharField(max_length=255)
-#     email = models.EmailField(unique=True)
-#     phone = models.CharField(max_length=20)
-#     address = models.TextField()
-#     graduation_year = models.IntegerField()
-#     degree = models.CharField(max_length=255)
-#     interests = models.TextField()
-#     achievements = models.TextField()
-
-#     def __str__(self):
-#         return self.name
 
 
 class Job(models.Model):
@@ -58,59 +41,7 @@ class Job(models.Model):
     email = models.EmailField(null=True, blank=True, default="")
 
     def __str__(self):
-        return self.job_title  # Return the first attribute 'job_title'
-
-
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
-#     profile_picture = models.ImageField(upload_to="profiles/", blank=True, null=True)
-#     bio = models.TextField()
-#     linkedin_url = models.URLField(blank=True)
-#     twitter_handle = models.CharField(max_length=100, blank=True)
-
-#     def __str__(self):
-#         return self.user.name
-
-
-# class Contact(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="contacts")
-#     profile = models.ForeignKey(
-#         UserProfile,
-#         related_name="contacts",
-#         on_delete=models.CASCADE,
-#         null=True,
-#         blank=True,
-#     )
-
-#     phone = models.CharField(max_length=20)
-#     email = models.EmailField()
-
-#     def __str__(self):
-#         return self.contact_name
-
-
-# class Message(models.Model):
-#     sender = models.ForeignKey(
-#         User, on_delete=models.CASCADE, related_name="sent_messages"
-#     )
-#     receiver = models.ForeignKey(
-#         User, on_delete=models.CASCADE, related_name="received_messages"
-#     )
-#     content = models.TextField()
-#     timestamp = models.DateTimeField(auto_now_add=True)
-#     status = models.CharField(max_length=50)
-
-#     def __str__(self):
-#         return self.content[:50]
-
-# class Donation(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="donations")
-#     amount = models.DecimalField(max_digits=10, decimal_places=2)
-#     date = models.DateTimeField()
-#     cause = models.TextField()
-
-#     def __str__(self):
-#         return f"{self.user.name} - {self.amount}"
+        return self.job_title
 
 
 class Role(models.Model):
@@ -119,33 +50,6 @@ class Role(models.Model):
 
     def __str__(self):
         return self.role_name
-
-
-# class Mentorship(models.Model):
-#     mentor = models.ForeignKey(
-#         User, on_delete=models.CASCADE, related_name="mentorships_as_mentor"
-#     )
-#     mentee = models.ForeignKey(
-#         User, on_delete=models.CASCADE, related_name="mentorships_as_mentee"
-#     )
-#     start_date = models.DateField()
-#     status = models.CharField(max_length=50)
-
-#     def __str__(self):
-#         return f"Mentor: {self.mentor.name} -> Mentee: {self.mentee.name}"
-
-
-# class Connection(models.Model):
-#     user1 = models.ForeignKey(
-#         User, on_delete=models.CASCADE, related_name="connections_as_user1"
-#     )
-#     user2 = models.ForeignKey(
-#         User, on_delete=models.CASCADE, related_name="connections_as_user2"
-#     )
-#     status = models.CharField(max_length=50)
-
-#     def __str__(self):
-#         return f"{self.user1.name} - {self.user2.name}"
 
 
 class NewsFeed(models.Model):
@@ -170,12 +74,11 @@ class Event(models.Model):
         return self.event_name
 
 
-class Post (models.Model):
+class Post(models.Model):
     post = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="owner")
-
 
     def __str__(self):
         return self.post
@@ -191,7 +94,7 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment by {self.user.username} on {self.post.id}"
 
-    
+
 class RegistrationRequest(models.Model):
     firstName = models.CharField(max_length=255)
     lastName = models.CharField(max_length=255)
@@ -206,12 +109,8 @@ class RegistrationRequest(models.Model):
     currentCompany = models.CharField(max_length=255, blank=True, null=True)
     currentPosition = models.CharField(max_length=255, blank=True, null=True)
     experience = models.IntegerField()
-    # skills = models.TextField(null=True, blank=True, default="")
-    # interests = models.TextField(null=True, blank=True, default="")
-
     skills = JSONField(null=True, blank=True, default=list)
     interests = JSONField(null=True, blank=True, default=list)
-
     achievements = models.TextField(null=True, blank=True, default="")
     facebook = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
@@ -224,9 +123,55 @@ class RegistrationRequest(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
-    
-
-    
-
     def __str__(self):
         return f"{self.firstName} {self.lastName} - {self.email}"
+
+
+class AlumniVerificationScore(models.Model):
+    """Model to track alumni verification scoring"""
+    email = models.EmailField()
+    student_id = models.CharField(max_length=50)
+    graduation_year = models.IntegerField()
+    department = models.CharField(max_length=100)
+    linkedin_profile = models.URLField(blank=True, null=True)
+    
+    # Scoring fields
+    student_id_score = models.IntegerField(default=0)  # 0-2 points
+    graduation_year_score = models.IntegerField(default=0)  # 0-2 points
+    linkedin_score = models.IntegerField(default=0)  # 0-2 points
+    document_score = models.IntegerField(default=0)  # 0-2 points
+    total_score = models.IntegerField(default=0)  # Total out of 8
+    
+    # Status tracking
+    verification_status = models.CharField(max_length=20, choices=[
+        ('pending', 'Pending Verification'),
+        ('auto_approved', 'Auto Approved'),
+        ('manual_review', 'Manual Review Required'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected')
+    ], default='pending')
+    
+    auto_approval_threshold = models.IntegerField(default=5)  # Score needed for auto-approval
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def calculate_total_score(self):
+        """Calculate total verification score"""
+        self.total_score = (
+            self.student_id_score + 
+            self.graduation_year_score + 
+            self.linkedin_score + 
+            self.document_score
+        )
+        return self.total_score
+    
+    def is_auto_approvable(self):
+        """Check if alumni meets auto-approval criteria"""
+        return self.calculate_total_score() >= self.auto_approval_threshold
+    
+    def __str__(self):
+        return f"{self.email} - Score: {self.total_score}/8"
+
+
+# Import mentorship models
+from .mentorship_models import MentorProfile, MentorshipRequest, MentorshipSession

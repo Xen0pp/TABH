@@ -66,9 +66,9 @@ const Login = () => {
         this.size = Math.random() * 3 + 1;
         this.speedX = (Math.random() - 0.5) * 0.5;
         this.speedY = (Math.random() - 0.5) * 0.5;
-        this.color = `rgba(${124 + Math.random() * 50}, ${
-          58 + Math.random() * 50
-        }, ${237 + Math.random() * 18}, ${Math.random() * 0.5 + 0.2})`;
+        this.color = `rgba(${152 + Math.random() * 30}, ${
+          41 + Math.random() * 20
+        }, ${41 + Math.random() * 20}, ${Math.random() * 0.5 + 0.2})`;
       }
 
       update() {
@@ -200,7 +200,7 @@ const Login = () => {
 
                 {/* plage logo */}
                 <Image
-                  src="/assets/logo.png"
+                  src="/assets/vips.jpg"
                   alt="Plage Logo"
                   width={200}
                   height={200}
@@ -209,7 +209,7 @@ const Login = () => {
                 />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2 font-orbitron">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-vips-maroon to-vips-maroon-dark">
                   VIPS-TC Alumni Network
                 </span>
               </h1>
@@ -546,7 +546,7 @@ const LoginForm = () => {
       {/* don't have an account?  */}
       <div>
         <p className="text-sm mt-3">
-          Don&apos;t have an account and you have VIPS-TC Email ?{" "}
+          Don&apos;t have an account and you have VIPS-TC Email (@vipstc.edu.in) ?{" "}
           <Link
             id="signup"
             href={"/signup"}
@@ -556,16 +556,24 @@ const LoginForm = () => {
           </Link>
         </p>
         <p className="text-sm mt-3">
-          Don&apos;t have an account and you are an Alumni don't have VIPS-TC Email
+          Don&apos;t have an account and you are an Alumni without VIPS-TC Email
           ?{" "}
           <Link
             id="registration-request"
             href={"/registration-request"}
-            className="text-primary font-semibold dark:hover:text-[--secondary-bg] duration-200"
+            className="text-blue-500 hover:text-blue-700 font-medium"
           >
-            Apply for an Account
+            Apply for Alumni Registration
           </Link>
         </p>
+        <div className="text-xs mt-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
+          <p className="text-blue-800 font-medium mb-1">📋 Alumni Registration Info:</p>
+          <ul className="text-blue-700 space-y-1">
+            <li>• <strong>Auto-Approval:</strong> Complete all fields for instant approval</li>
+            <li>• <strong>Required:</strong> Valid Student ID, Graduation Year, LinkedIn</li>
+            <li>• <strong>Documents:</strong> Upload CV and proof documents for faster processing</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

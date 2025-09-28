@@ -180,16 +180,16 @@ const RegistrationContainer = () => {
               onClick={() => router.push("/")}
             >
               <div className="inline-block mb-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                <div className="w-16 h-16 bg-gradient-to-r from-vips-maroon to-vips-maroon-dark rounded-xl flex items-center justify-center shadow-lg">
                   <GraduationCap size={32} className="text-white" />
                 </div>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2 font-orbitron">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-                  UAP Alumni Network
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-vips-maroon to-vips-maroon-dark">
+                  VIPS-TC Alumni Network
                 </span>
               </h1>
-              <p className="text-xl text-gray-300">
+              <p className="text-xl text-maroon-300">
                 Connect. Collaborate. Succeed.
               </p>
             </motion.div>
@@ -205,7 +205,7 @@ const RegistrationContainer = () => {
               <h2 className="text-2xl font-bold mb-4 text-white">
                 Join Our Global Community
               </h2>
-              <p className="text-gray-300 mb-4">
+              <p className="text-black-400 mb-4">
                 Our alumni network connects graduates across industries and
                 continents, providing exclusive access to career opportunities,
                 mentorship programs, and lifelong learning resources.

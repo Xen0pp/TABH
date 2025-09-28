@@ -53,28 +53,32 @@ export const authOptions = {
         const { email, password } = credentials;
 
         try {
+          console.log("🔐 Attempting login for:", email);
+          console.log("🌐 API URL:", `${process.env.NEXT_PUBLIC_API_URL}/auth/login/`);
+          
           const res = await axios.post(
             `${process.env.NEXT_PUBLIC_API_URL}/auth/login/`,
             {
               email: email,
               password: password,
-              confirm_password: password,
             }
           );
-          // console.log("res from auth handler :>> ", res.data);
+          
+          console.log("✅ Login response:", res.data);
 
           const user = res.data;
 
-          if (user) {
-            return user?.data;
+          if (user && user.data) {
+            return user.data;
+          } else if (user) {
+            return user;
           }
 
-          // return null;
-        } catch (err) {
-          // console.log("err in log in :>> ", err?.response?.data);
-          console.log("err in log in :>> ", err?.response?.data?.error);
-          throw new Error(err?.response?.data?.error || "Login failed");
           return null;
+        } catch (err) {
+          console.log("❌ Login error:", err?.response?.data);
+          console.log("❌ Error details:", err?.response?.status, err?.response?.statusText);
+          throw new Error(err?.response?.data?.error || err?.response?.data?.message || "Login failed");
         }
       },
     }),

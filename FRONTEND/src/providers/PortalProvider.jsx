@@ -7,13 +7,10 @@ import { AppSidebarInset } from "../components/portal/layout/app-sidebar-inset";
 
 const PortalProvider = ({ children }) => {
   return (
-    <div>
-      <SidebarProvider>
-        <AppSidebar>
-          <AppSidebarInset>{children}</AppSidebarInset>
-        </AppSidebar>
-      </SidebarProvider>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <AppSidebarInset>{children}</AppSidebarInset>
+    </SidebarProvider>
   );
 };
 

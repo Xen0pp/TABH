@@ -27,7 +27,17 @@ const SnackbarProvider = dynamic(
 const CustomRootProvider = ({ children, session }) => {
   //
 
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 1,
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        cacheTime: 10 * 60 * 1000, // 10 minutes
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+      },
+    },
+  }));
 
   // const { theme, setTheme } = useTheme();
 
@@ -36,12 +46,12 @@ const CustomRootProvider = ({ children, session }) => {
       <QueryClientProvider client={queryClient}>
         <SnackbarProvider>
           <SessionProvider session={session}>
-            <AppProgressBar
+            {/* <AppProgressBar
               height="3px"
               color="#805ad5"
               options={{ showSpinner: false }}
               shallowRouting
-            />
+            /> */}
             {/* <Header /> */}
 
             <ThemeProvider

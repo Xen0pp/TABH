@@ -46,7 +46,7 @@ const PostBox = () => {
     >
       <div className="mb-6 relative">
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-2xl blur-xl"
+          className="absolute inset-0 bg-gradient-to-r from-vips-maroon/10 to-vips-maroon-dark/10 rounded-2xl blur-xl"
           animate={{
             opacity: [0.5, 0.7, 0.5],
           }}
@@ -87,11 +87,11 @@ const PostBox = () => {
                 id="publish-now"
                 type="submit"
                 disabled={isPending}
-                className="relative overflow-hidden group text-sm font-medium bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full h-10 flex gap-2 items-center justify-center px-5 disabled:cursor-not-allowed disabled:opacity-50"
+                className="relative overflow-hidden group text-sm font-medium bg-gradient-to-r from-vips-maroon to-vips-maroon-dark text-white rounded-full h-10 flex gap-2 items-center justify-center px-5 disabled:cursor-not-allowed disabled:opacity-50"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <motion.span className="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                <motion.span className="absolute inset-0 bg-gradient-to-r from-vips-maroon-dark to-vips-maroon opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 <span className="relative flex items-center gap-2">
                   {isPending ? (
                     <>

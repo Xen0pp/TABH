@@ -29,8 +29,8 @@ const AboutAlumni = () => {
     <div
       className={`min-h-screen w-full p-4 md:p-8 rounded-xl ${
         isDark
-          ? "bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
-          : "bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50"
+          ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+          : "bg-gradient-to-br from-vips-cream via-white to-vips-cream"
       }`}
     >
       <AnimatePresence>
@@ -63,7 +63,7 @@ const AboutAlumni = () => {
                 }}
                 style={{
                   backgroundImage:
-                    "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fillOpacity='0.1' fillRule='evenodd'/%3E%3C/svg%3E\")",
+                    "url(\"data:image/svg+xml,%3Csvg display ='none' width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fillOpacity='0.1' fillRule='evenodd'/%3E%3C/svg%3E\")",
                   backgroundSize: "30px 30px",
                 }}
               />
@@ -80,7 +80,7 @@ const AboutAlumni = () => {
                     </div>
                   </div>
                   <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                    UAP Alumni Network
+                   VIPS-TC Alumni Network
                   </h1>
                   <p className="text-lg text-white/80 max-w-2xl mx-auto">
                     Connecting generations of excellence to build a global
@@ -106,15 +106,8 @@ const AboutAlumni = () => {
                         : "text-gray-700 leading-relaxed"
                     }
                   >
-                    The University of Asia Pacific Alumni Network serves as a
-                    bridge connecting our graduates across generations and
-                    continents. We foster professional growth, facilitate
-                    meaningful connections, and create opportunities for alumni
-                    to contribute to the university's development and the
-                    broader community. Our network empowers graduates to
-                    continue their journey of excellence long after graduation,
-                    embodying the values and vision of UAP in their professional
-                    and personal lives.
+                    The Vivekananda Institute of Professional Studies - Technical Campus Alumni Network serves as a bridge connecting our graduates across generations and continents. We foster professional growth, facilitate meaningful connections, and create opportunities for alumni to contribute to the university's development and the broader community. Our network empowers graduates to continue their journey of excellence long after graduation, embodying the values and vision of VIPS-TC in their professional and personal lives.
+
                   </p>
                 </InfoSection>
               </motion.div>
@@ -158,13 +151,7 @@ const AboutAlumni = () => {
                         </h3>
                       </div>
                       <p className={isDark ? "text-gray-300" : "text-gray-700"}>
-                        Our alumni have graduated from diverse disciplines
-                        including Engineering, Architecture, Business, and
-                        Computer Science. Many have pursued advanced degrees at
-                        prestigious institutions worldwide, with over 120 alumni
-                        completing doctoral studies and 350+ earning master's
-                        degrees.
-                      </p>
+                      Our alumni have graduated from diverse disciplines including Engineering, Law, Business, Information Technology, Journalism, and Economics. Many have pursued advanced degrees at prestigious institutions worldwide, with over 42 Gold Medals achieved by VIPS-TC students in GGSIPU examinations. The institute has consistently maintained academic excellence with NAAC A++ accreditation and recognition from leading educational bodies.</p>
                     </div>
                   </Card>
                 </motion.div>
@@ -201,12 +188,9 @@ const AboutAlumni = () => {
                         </h3>
                       </div>
                       <p className={isDark ? "text-gray-300" : "text-gray-700"}>
-                        UAP alumni are making significant contributions across
-                        industries globally. Our graduates hold leadership
-                        positions at companies like Google, Microsoft, Samsung,
-                        and local industry leaders. Over 85 alumni have founded
-                        successful startups, creating jobs and driving
-                        innovation in Bangladesh and beyond.
+                      VIPS-TC alumni are making significant contributions across industries globally. Our graduates hold leadership positions at companies like Amazon, Microsoft, Google, Infosys, TCS, Wipro, Deloitte, IBM, and other major corporations. Over 70-80% of students secure placements with average packages ranging from 3-5 LPA and the highest package reaching 40 LPA. Many alumni have founded successful startups, creating jobs and driving innovation in India and beyond.
+
+
                       </p>
                     </div>
                   </Card>
@@ -237,27 +221,30 @@ const AboutAlumni = () => {
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                   <StatCard
-                    title="12,500+"
+                    title="22+"
                     icon={<Users size={24} />}
-                    description="Alumni Worldwide"
+                    description="Years of Academic Excellence"
                     isDark={isDark}
                   />
                   <StatCard
-                    title="250+"
+                    title="6,700+"
                     icon={<Trophy size={24} />}
-                    description="International Awards"
+                    description="Current Students across all programs
+"
                     isDark={isDark}
                   />
                   <StatCard
-                    title="85+"
+                    title="42"
                     icon={<Building size={24} />}
-                    description="Startups Founded"
+                    description="University Gold Medals achieved by students
+"
                     isDark={isDark}
                   />
                   <StatCard
-                    title="40+"
+                    title="100+"
                     icon={<Globe size={24} />}
-                    description="Countries Represented"
+                    description="Companies participate in campus recruitment annually
+"
                     isDark={isDark}
                   />
                 </div>

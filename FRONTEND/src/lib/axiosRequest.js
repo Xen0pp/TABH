@@ -1,5 +1,5 @@
 import axios from "axios";
-
+console.log('🔍 Base URL:', process.env.NEXT_PUBLIC_API_URL);
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 const axiosRequest = async ({ ...options }) => {

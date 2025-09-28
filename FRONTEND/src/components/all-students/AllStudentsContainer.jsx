@@ -41,12 +41,12 @@ const AllStudentsContainer = () => {
   const { data: users, isLoading } = useGetUsers({
     limit,
     offset,
-    role: 1, // student
+    role: 16, // student
   });
   const { data: roles, isLoading: isRolesLoading } = useGetRoles();
 
   return (
-    <section className="min-h-screen rounded-xl pt-10 bg-gradient-to-br from-[#0F0F0F] to-[#1E1E1E] p-6">
+    <section className="min-h-screen rounded-xl pt-10 bg-gradient-to-br from-vips-cream to-white dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="container max-auto">
         {/* <div className="mb-10">
           <div className="flex gap-2 items-center justify-between">
@@ -61,13 +61,13 @@ const AllStudentsContainer = () => {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="font-orbitron text-3xl font-bold text-white md:text-4xl">
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+          <h1 className="font-orbitron text-3xl font-bold text-vips-text-dark dark:text-white md:text-4xl">
+            <span className="bg-gradient-to-r from-vips-maroon to-vips-maroon-dark bg-clip-text text-transparent">
               Our Sweet Students
             </span>
           </h1>
-          <p className="mt-2 text-gray-400">
-            Here you can see all students of UAP.
+          <p className="mt-2 text-vips-text-light dark:text-gray-400">
+            Here you can see all students of VIPS-TC.
           </p>
         </div>
 
@@ -143,8 +143,8 @@ const StudentCard = ({ index, user }) => {
             <AvatarFallback
               className={`text-white text-2xl ${
                 isDark
-                  ? "bg-gradient-to-br from-violet-600 to-indigo-600"
-                  : "bg-gradient-to-br from-blue-500 to-indigo-500"
+                  ? "bg-gradient-to-br from-vips-maroon to-vips-maroon-dark"
+                  : "bg-gradient-to-br from-vips-maroon to-vips-maroon-dark"
               }`}
             >
               {getInitials(user?.first_name, user?.last_name)}

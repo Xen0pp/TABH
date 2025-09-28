@@ -8,7 +8,7 @@ const HomeLeft = () => {
       {/* Image */}
       <div className="mb-4">
         <Image
-          src="/assets/uap.jpeg"
+          src="/assets/building.jpg"
           alt="Organization Building"
           width={300}
           height={200}
@@ -19,14 +19,14 @@ const HomeLeft = () => {
       {/* Title and Deadline */}
       <div className="mb-2">
         <p className="text-gray-700 dark:text-gray-200 text-sm">
-          Call for masters scholarships in Turkey, Deadline 31st July 2020
+         
         </p>
       </div>
 
       {/* Read More Button */}
       <div className="mb-4">
-        <button className="text-blue-500 dark:text-blue-400 font-semibold">
-          Read More
+        <button className="text-vips-maroon dark:text-vips-maroon font-semibold">
+         
         </button>
       </div>
 
@@ -99,7 +99,7 @@ const HomeLeft = () => {
               </p>
             </div>
           </div>
-          <span className="bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-400 px-2 py-1 rounded text-xs font-medium">
+          <span className="bg-vips-maroon-light text-vips-maroon px-2 py-1 rounded text-xs font-medium">
             309
           </span>
         </div>

@@ -41,12 +41,12 @@ const AllAlumniContainer = () => {
   const { data: users, isLoading } = useGetUsers({
     limit,
     offset,
-    role: 2, // alumni
+    role: 15, // alumni
   });
   const { data: roles, isLoading: isRolesLoading } = useGetRoles();
 
   return (
-    <section className="min-h-screen rounded-xl pt-10 bg-gradient-to-br from-[#0F0F0F] to-[#1E1E1E] p-6">
+    <section className="min-h-screen rounded-xl pt-10 bg-gradient-to-br from-vips-cream to-white dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="container max-auto">
         {/* <div className="mb-10">
           <div className="flex gap-2 items-center justify-between">

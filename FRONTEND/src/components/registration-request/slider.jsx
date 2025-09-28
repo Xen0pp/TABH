@@ -30,14 +30,14 @@ const RegistrationRequestSlider = () => {
   const slides = [
     {
       id: 1,
-      title: "Welcome to UAP",
+      title: "Welcome to VIPS-TC",
       description:
         "A leading institution for innovation and academic excellence",
-      imagePath: "/assets/uap.jpeg",
+      imagePath: "/assets/building3.jpg",
       icon: <GraduationCap size={28} />,
       stats: [
-        { value: "25,000+", label: "Alumni" },
-        { value: "50+", label: "Years" },
+        { value: "10K+", label: "Alumni" },
+        { value: "22+", label: "Years" },
       ],
     },
     {
@@ -45,33 +45,33 @@ const RegistrationRequestSlider = () => {
       title: "Campus Life",
       description:
         "Experience a vibrant community and state-of-the-art facilities",
-      imagePath: "/assets/uap-1.jpeg",
+      imagePath: "/assets/building2.jpg",
       icon: <Building2 size={28} />,
       stats: [
-        { value: "100+", label: "Clubs" },
-        { value: "30+", label: "Buildings" },
+        { value: "30+", label: "Clubs" },
+        
       ],
     },
     {
       id: 3,
       title: "Global Network",
       description: "Connect with alumni across industries and continents",
-      imagePath: "/assets/uap.jpeg", // Using the same image as a fallback
+      imagePath: "/assets/building.jpg", // Using the same image as a fallback
       icon: <Users size={28} />,
       stats: [
-        { value: "120+", label: "Countries" },
-        { value: "500+", label: "Partners" },
+        { value: "42", label: "Gold Medals" },
+        { value: "100+", label: "Companies" },
       ],
     },
     {
       id: 4,
       title: "Academic Excellence",
       description: "Recognized for outstanding research and teaching",
-      imagePath: "/assets/uap-1.jpeg", // Using the same image as a fallback
+      imagePath: "/assets/building2.jpg", // Using the same image as a fallback
       icon: <Award size={28} />,
       stats: [
         { value: "Top 5%", label: "Ranking" },
-        { value: "200+", label: "Programs" },
+        { value: "20+", label: "Programs" },
       ],
     },
   ];
