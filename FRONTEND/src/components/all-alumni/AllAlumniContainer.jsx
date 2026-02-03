@@ -13,6 +13,7 @@ import {
   Plus,
   Sparkles,
   Twitter,
+  Mail,
 } from "lucide-react";
 
 import {
@@ -51,11 +52,11 @@ const AllAlumniContainer = () => {
         {/* <div className="mb-10">
           <div className="flex gap-2 items-center justify-between">
             <h1 className="text-3xl font-bold mb-4 whitespace-nowrap">
-              All Alumni and Students
+              All Hostelers and Current Residents
             </h1>
           </div>
           <p className="text-md opacity-80 text-sm italic">
-            Here you can see all alumni of UAP.
+            Here you can see all former hostelers of TABH.
           </p>
         </div> */}
 
@@ -63,11 +64,11 @@ const AllAlumniContainer = () => {
         <div className="mb-8">
           <h1 className="font-orbitron text-3xl font-bold text-white md:text-4xl">
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Our Honorable Alumni
+              Our Honorable Hostelers
             </span>
           </h1>
           <p className="mt-2 text-gray-400">
-            Here you can see all alumni of UAP.
+            Here you can see all former hostelers of TABH.
           </p>
         </div>
 
@@ -75,7 +76,7 @@ const AllAlumniContainer = () => {
           <div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-5 gap-y-10 overflow-hidden">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => (
-                <AlumniCardSkeleton key={i} index={index} />
+                <HostelerCardSkeleton key={i} index={index} />
               ))}
             </div>
           </div>
@@ -83,10 +84,10 @@ const AllAlumniContainer = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-10 overflow-hidden ">
           {users?.results?.map((user, index) => (
-            <AlumniCard key={user?.id} index={index} user={user} />
+            <HostelerCard key={user?.id} index={index} user={user} />
           ))}
 
-          {/* <AlumniCard /> */}
+          {/* <HostelerCard /> */}
         </div>
 
         {/* pagination */}
@@ -105,7 +106,7 @@ const AllAlumniContainer = () => {
 
 export default AllAlumniContainer;
 
-const AlumniCard = ({ index, user }) => {
+const HostelerCard = ({ index, user }) => {
   const { data: roles, isLoading: isRolesLoading } = useGetRoles();
 
   // Function to get initials from name
@@ -178,45 +179,19 @@ const AlumniCard = ({ index, user }) => {
       {/* social media icons */}
 
       <div className="flex items-center gap-5 mt-5 justify-center ">
-        {/* facebook */}
-        <button
-          className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200"
-          target="_blank"
-        >
-          <Link href="/" target="_blank">
-            <Facebook className="text-[--secondary-bg]" size={20} />
-          </Link>
-        </button>
-
-        {/* twitter */}
-        <button
-          className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200"
-          target="_blank"
-        >
-          <Link href="/" target="_blank">
-            <Twitter className="text-[--secondary-bg]" size={20} />
-          </Link>
-        </button>
-
         {/* linkedin */}
-        <button
-          className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200"
-          target="_blank"
-        >
-          <Link href="/" target="_blank">
+        <a href={user?.linkedin} target="_blank" rel="noopener noreferrer">
+          <button className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200">
             <Linkedin className="text-[--secondary-bg]" size={20} />
-          </Link>
-        </button>
+          </button>
+        </a>
 
-        {/* instagram */}
-        <button
-          className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200"
-          target="_blank"
-        >
-          <Link href="/" target="_blank">
-            <Instagram className="text-[--secondary-bg]" size={20} />
-          </Link>
-        </button>
+        {/* gmail */}
+        <a href={`mailto:${user?.email}`} target="_blank" rel="noopener noreferrer">
+          <button className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200">
+            <Mail className="text-[--secondary-bg]" size={20} />
+          </button>
+        </a>
       </div>
 
       {/* view profile */}
@@ -284,7 +259,7 @@ const UserOptions = ({ user, index }) => {
   );
 };
 
-export const AlumniCardSkeleton = () => {
+export const HostelerCardSkeleton = () => {
   return (
     <div className="space-y-3">
       <div className="flex gap-5">

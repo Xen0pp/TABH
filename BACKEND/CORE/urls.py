@@ -29,7 +29,7 @@ from django.conf.urls.static import static
 def api_root(request):
     """Root API endpoint"""
     return JsonResponse({
-        'message': 'Welcome to VIPS-TC Alumni Portal API',
+        'message': 'Welcome to TABH (Tauras Army Boys Hostel) Portal API',
         'version': 'v1',
         'endpoints': {
             'admin': '/admin/',
@@ -41,11 +41,11 @@ def api_root(request):
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="VIPS-TC Alumni Portal API Documentation",
+        title="TABH Portal API Documentation",
         default_version="v1",
-        description="API documentation for VIPS-TC Alumni Portal",
+        description="API documentation for Tauras Army Boys Hostel Portal",
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="admin@vips-tc.edu"),
+        contact=openapi.Contact(email="admin@tabh.edu"),
         license=openapi.License(name="MIT License"),
     ),
     public=True,

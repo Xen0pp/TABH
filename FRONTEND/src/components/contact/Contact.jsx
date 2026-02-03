@@ -141,9 +141,9 @@ const Contact = () => {
                       <ContactItem
                         icon={<Mail size={20} />}
                         title="Email"
-                        content="vipsedu@vips.edu"
+                        content="admin@tabh.edu"
                         isLink={true}
-                        href="mailto:vipsedu@vips.edu"
+                        href="mailto:admin@tabh.edu"
                         isDark={isDark}
                       />
                     </div>

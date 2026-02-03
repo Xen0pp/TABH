@@ -55,9 +55,10 @@ const CustomRootProvider = ({ children, session }) => {
             {/* <Header /> */}
 
             <ThemeProvider
-              enableSystem
+              enableSystem={false}
               attribute="class"
               defaultTheme="light"
+              forcedTheme="light"
               disableTransitionOnChange
             >
               {children}

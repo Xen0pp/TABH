@@ -8,7 +8,6 @@ from authorization.models import UserInfo
 from authorization.serializer import UserInfoSerializer
 
 from cms.models import (
-    Blog,
     # User,
     Job,
     Comment,
@@ -39,10 +38,6 @@ class Base64ImageField(serializers.ImageField):
         return super().to_internal_value(data)
 
 
-class BlogSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Blog
-        fields = "__all__"
 
 
 class UserSerializer(serializers.ModelSerializer):

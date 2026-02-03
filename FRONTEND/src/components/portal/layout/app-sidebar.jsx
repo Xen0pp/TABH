@@ -18,9 +18,13 @@ import {
   Settings,
   Bell,
   LogOut,
+  FileText,
   CircleUserRound,
   ChevronsUpDown,
-  BadgeCheck
+  BadgeCheck,
+  Building2,
+  Camera,
+  Shield
 } from "lucide-react";
 
 import {
@@ -57,22 +61,42 @@ const navigationGroups = [
         icon: Home,
       },
       {
-        title: "Profile",
-        url: "/portal/profile",
-        icon: User,
+        title: "Eligibility",
+        url: "/portal/eligibility",
+        icon: FileText,
+      },
+      {
+        title: "Rooms & Facilities",
+        url: "/portal/rooms-facilities",
+        icon: Building2,
+      },
+      {
+        title: "Gallery",
+        url: "/portal/gallery",
+        icon: Camera,
+      },
+      {
+        title: "TABH Administration",
+        url: "/portal/administration",
+        icon: Shield,
       },
     ],
   },
   {
-    title: "Alumni Network",
+    title: "Brotherhood Network",
     items: [
       {
-        title: "Alumni List",
+        title: "Profile",
+        url: "/portal/profile",
+        icon: User,
+      },
+      {
+        title: "Alumni",
         url: "/portal/alumni-list",
         icon: Users,
       },
       {
-        title: "Students",
+        title: "Hostelers",
         url: "/portal/students",
         icon: GraduationCap,
       },
@@ -89,7 +113,7 @@ const navigationGroups = [
     ],
   },
   {
-    title: "Mentorship",
+    title: "Guidance & Mentorship",
     items: [
       {
         title: "Mentorship Hub",
@@ -102,7 +126,7 @@ const navigationGroups = [
         icon: Users,
       },
       {
-        title: "Apply as Mentor",
+        title: "Become a Mentor",
         url: "/portal/mentorship/apply-mentor",
         icon: MessageSquare,
       },
@@ -117,12 +141,7 @@ const navigationGroups = [
     title: "Resources",
     items: [
       {
-        title: "Blogs",
-        url: "/portal/blogs",
-        icon: BookOpen,
-      },
-      {
-        title: "About Alumni",
+        title: "About TABH",
         url: "/portal/about-alumni",
         icon: Info,
       },
@@ -142,17 +161,6 @@ export function AppSidebar() {
   const getNavigationGroups = () => {
     const groups = [...navigationGroups];
     
-    // Add admin items to Alumni Network group if user is superuser
-    if (session?.user?.user_info?.user?.is_superuser) {
-      const alumniGroup = groups.find(group => group.title === "Alumni Network");
-      if (alumniGroup && !alumniGroup.items.find(item => item.title === "Alumni Requests")) {
-        alumniGroup.items.push({
-          title: "Alumni Requests",
-          url: "/portal/alumni-requests",
-          icon: Users,
-        });
-      }
-    }
     
     return groups;
   };
@@ -168,8 +176,8 @@ export function AppSidebar() {
                   <GraduationCap className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">VIPS-TC</span>
-                  <span className="truncate text-xs">Alumni Portal</span>
+                  <span className="truncate font-semibold">TABH</span>
+                  <span className="truncate text-xs">Hostel Portal</span>
                 </div>
               </Link>
             </SidebarMenuButton>

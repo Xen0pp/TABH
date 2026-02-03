@@ -7,8 +7,8 @@ import CustomRootProvider from "../providers/CustomRootProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "VIPS-TC Alumni Portal",
-  description: "Connect with VIPS Technical Campus alumni and build lasting professional networks",
+  title: "TABH - Tauras Army Boys Hostel",
+  description: "Tauras Army Boys Hostel management and community portal",
 };
 
 // const myFont = localFont({

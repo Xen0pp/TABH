@@ -64,30 +64,28 @@ const AboutAlumni = () => {
                 style={{
                   backgroundImage:
                     "url(\"data:image/svg+xml,%3Csvg display ='none' width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fillOpacity='0.1' fillRule='evenodd'/%3E%3C/svg%3E\")",
-                  backgroundSize: "30px 30px",
                 }}
-              />
-
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 z-10">
-                <motion.div
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <div className="inline-block mb-4">
-                    <div className="bg-white/20 backdrop-blur-md p-3 rounded-full">
-                      <Network className="h-10 w-10 text-white" />
+              >
+                <div className="text-center relative z-10">
+                  <motion.div
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <div className="inline-block mb-4">
+                      <div className="bg-white/20 backdrop-blur-md p-3 rounded-full">
+                        <Network className="h-10 w-10 text-white" />
+                      </div>
                     </div>
-                  </div>
-                  <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                   VIPS-TC Alumni Network
-                  </h1>
-                  <p className="text-lg text-white/80 max-w-2xl mx-auto">
-                    Connecting generations of excellence to build a global
-                    community of innovation and leadership
-                  </p>
-                </motion.div>
-              </div>
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+                      Tauras Army Boys Hostel
+                    </h1>
+                    <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                      Forging bonds of honor and discipline, building a legacy of service, courage, and brotherhood
+                    </p>
+                  </motion.div>
+                </div>
+              </motion.div>
             </div>
 
             <div className="px-6 py-8">
@@ -106,7 +104,7 @@ const AboutAlumni = () => {
                         : "text-gray-700 leading-relaxed"
                     }
                   >
-                    The Vivekananda Institute of Professional Studies - Technical Campus Alumni Network serves as a bridge connecting our graduates across generations and continents. We foster professional growth, facilitate meaningful connections, and create opportunities for alumni to contribute to the university's development and the broader community. Our network empowers graduates to continue their journey of excellence long after graduation, embodying the values and vision of VIPS-TC in their professional and personal lives.
+                    The Tauras Army Boys Hostel (TABH) stands as a beacon of discipline, honor, and excellence. Our Brotherhood Network connects former residents who have been molded by the values of courage, integrity, and selfless service. We foster a lifelong bond among those who have walked these halls, instilling the spirit of camaraderie and national pride. Our network empowers former hostelers to carry forward the legacy of TABH—upholding the highest standards of character, leadership, and dedication to the nation in all their endeavors.
 
                   </p>
                 </InfoSection>
@@ -151,7 +149,7 @@ const AboutAlumni = () => {
                         </h3>
                       </div>
                       <p className={isDark ? "text-gray-300" : "text-gray-700"}>
-                      Our alumni have graduated from diverse disciplines including Engineering, Law, Business, Information Technology, Journalism, and Economics. Many have pursued advanced degrees at prestigious institutions worldwide, with over 42 Gold Medals achieved by VIPS-TC students in GGSIPU examinations. The institute has consistently maintained academic excellence with NAAC A++ accreditation and recognition from leading educational bodies.</p>
+                      Our hostelers embody the finest traditions of discipline and excellence. Shaped by rigorous training in character, leadership, and moral values, they have gone on to serve the nation with distinction in the armed forces, civil services, and various professional fields. The foundation laid at TABH—built on honor, duty, and sacrifice—has produced individuals who stand tall as pillars of integrity and courage in society.</p>
                     </div>
                   </Card>
                 </motion.div>
@@ -184,11 +182,11 @@ const AboutAlumni = () => {
                             isDark ? "text-white" : "text-gray-800"
                           }`}
                         >
-                          Professional Impact
+                          Service to the Nation
                         </h3>
                       </div>
                       <p className={isDark ? "text-gray-300" : "text-gray-700"}>
-                      VIPS-TC alumni are making significant contributions across industries globally. Our graduates hold leadership positions at companies like Amazon, Microsoft, Google, Infosys, TCS, Wipro, Deloitte, IBM, and other major corporations. Over 70-80% of students secure placements with average packages ranging from 3-5 LPA and the highest package reaching 40 LPA. Many alumni have founded successful startups, creating jobs and driving innovation in India and beyond.
+                      TABH hostelers have distinguished themselves in service to the nation and society. Many have joined the Indian Armed Forces, serving with valor and dedication on the frontlines. Others have excelled in civil services, law enforcement, and leadership positions across various sectors. The values of discipline, teamwork, and unwavering commitment instilled at TABH continue to guide them as they contribute to nation-building and uphold the highest ideals of duty and honor.
 
 
                       </p>
@@ -216,35 +214,32 @@ const AboutAlumni = () => {
                         : "bg-gradient-to-b from-blue-400 to-indigo-500"
                     }`}
                   ></span>
-                  Alumni Impact by Numbers
+                  Legacy of Excellence
                 </h2>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                   <StatCard
-                    title="22+"
+                    title="20+"
                     icon={<Users size={24} />}
-                    description="Years of Academic Excellence"
+                    description="Years of Building Character and Discipline"
                     isDark={isDark}
                   />
                   <StatCard
-                    title="6,700+"
+                    title="500+"
                     icon={<Trophy size={24} />}
-                    description="Current Students across all programs
-"
+                    description="Proud Hostelers Serving the Nation"
                     isDark={isDark}
                   />
                   <StatCard
-                    title="42"
+                    title="100%"
                     icon={<Building size={24} />}
-                    description="University Gold Medals achieved by students
-"
+                    description="Commitment to Honor and Integrity"
                     isDark={isDark}
                   />
                   <StatCard
-                    title="100+"
+                    title="∞"
                     icon={<Globe size={24} />}
-                    description="Companies participate in campus recruitment annually
-"
+                    description="Brotherhood that Transcends Time"
                     isDark={isDark}
                   />
                 </div>
@@ -309,25 +304,25 @@ const AboutAlumni = () => {
                         : "bg-gradient-to-b from-blue-400 to-indigo-500"
                     }`}
                   ></span>
-                  Alumni Programs
+                  Brotherhood Programs
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <ProgramCard
-                    title="Mentorship Program"
-                    description="Connect with current students to provide career guidance and professional development support."
+                    title="Mentorship & Guidance"
+                    description="Senior hostelers guide current residents in character building, career planning, and upholding the values of honor and discipline."
                     icon={<Sparkles size={20} />}
                     isDark={isDark}
                   />
                   <ProgramCard
                     title="Annual Reunion"
-                    description="Join fellow alumni for networking, recognition ceremonies, and campus updates each year."
+                    description="Brothers reunite to celebrate our shared legacy, honor achievements, and strengthen the bonds forged at TABH."
                     icon={<Users size={20} />}
                     isDark={isDark}
                   />
                   <ProgramCard
-                    title="Scholarship Fund"
-                    description="Contribute to scholarships that support promising students from diverse backgrounds."
+                    title="Welfare & Support"
+                    description="Supporting fellow hostelers and their families, embodying the spirit of service and brotherhood beyond the hostel walls."
                     icon={<Award size={20} />}
                     isDark={isDark}
                   />
@@ -409,7 +404,7 @@ const AboutAlumni = () => {
                     >
                       <motion.span className="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                       <span className="relative flex items-center gap-2">
-                        <span>Explore Alumni Profiles</span>
+                        <span>Explore Brotherhood Profiles</span>
                         <ArrowRight
                           size={16}
                           className="group-hover:translate-x-1 transition-transform duration-200"
@@ -429,7 +424,7 @@ const AboutAlumni = () => {
                       whileTap={{ scale: 0.98 }}
                     >
                       <span className="flex items-center gap-2">
-                        <span>View Upcoming Alumni Events</span>
+                        <span>View Upcoming Brotherhood Events</span>
                         <ChevronRight size={16} />
                       </span>
                     </motion.button>

@@ -13,6 +13,7 @@ import {
   Plus,
   Sparkles,
   Twitter,
+  Mail,
 } from "lucide-react";
 
 import {
@@ -178,45 +179,19 @@ const StudentCard = ({ index, user }) => {
       {/* social media icons */}
 
       <div className="flex items-center gap-5 mt-5 justify-center ">
-        {/* facebook */}
-        <button
-          className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200"
-          target="_blank"
-        >
-          <Link href="/" target="_blank">
-            <Facebook className="text-[--secondary-bg]" size={20} />
-          </Link>
-        </button>
-
-        {/* twitter */}
-        <button
-          className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200"
-          target="_blank"
-        >
-          <Link href="/" target="_blank">
-            <Twitter className="text-[--secondary-bg]" size={20} />
-          </Link>
-        </button>
-
         {/* linkedin */}
-        <button
-          className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200"
-          target="_blank"
-        >
-          <Link href="/" target="_blank">
+        <a href={user?.linkedin} target="_blank" rel="noopener noreferrer">
+          <button className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200">
             <Linkedin className="text-[--secondary-bg]" size={20} />
-          </Link>
-        </button>
+          </button>
+        </a>
 
-        {/* instagram */}
-        <button
-          className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200"
-          target="_blank"
-        >
-          <Link href="/" target="_blank">
-            <Instagram className="text-[--secondary-bg]" size={20} />
-          </Link>
-        </button>
+        {/* gmail */}
+        <a href={`mailto:${user?.email}`} target="_blank" rel="noopener noreferrer">
+          <button className="h-8 w-8 grid place-items-center rounded-full bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-400 transition-colors duration-200">
+            <Mail className="text-[--secondary-bg]" size={20} />
+          </button>
+        </a>
       </div>
 
       {/* view profile */}

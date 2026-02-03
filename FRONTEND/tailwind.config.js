@@ -25,7 +25,19 @@ module.exports = {
     },
     extend: {
       colors: {
-        // VIPS-TC Brand Colors
+        // TABH Brand Colors
+        'tabh': {
+          red: 'rgb(152, 41, 41)',
+          'red-light': 'rgba(152, 41, 41, 0.1)',
+          'red-medium': 'rgba(152, 41, 41, 0.8)',
+          'red-dark': 'rgb(120, 30, 30)',
+          cream: '#faf9f7',
+          gold: '#d4af37',
+          gray: '#f8f9fa',
+          'text-dark': '#2d3748',
+          'text-light': '#718096',
+        },
+        // Keep VIPS colors for backward compatibility during transition
         'vips': {
           maroon: 'rgb(152, 41, 41)',
           'maroon-light': 'rgba(152, 41, 41, 0.1)',
@@ -75,6 +87,7 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         heading: ['Poppins', 'system-ui', 'sans-serif'],
+        merriweather: ['Merriweather', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

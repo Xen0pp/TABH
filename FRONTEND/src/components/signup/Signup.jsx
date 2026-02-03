@@ -246,17 +246,17 @@ const Signup = () => {
 
                 {/* plage logo */}
                 <Image
-                  src="/assets/vips.jpg"
-                  alt="VIPS-TC Logo"
-                  width={200}
-                  height={200}
+                  src="/assets/TaurasLogo.jpg"
+                  alt="Tauras Army Boys Hostel Logo"
+                  width={400}
+                  height={400}
                   quality={100}
-                  className="w-28 h-24"
+                  className="w-52 h-40"
                 />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2 font-orbitron">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-vips-maroon to-vips-maroon-dark">
-                  VIPS-TC Alumni Network
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-800 to-red-900">
+                  Tauras Army Boys Hostel
                 </span>
               </h1>
               <h1 className="text-xl md:text-xl lg:text-3xl font-semibold  ">
@@ -270,10 +270,16 @@ const Signup = () => {
                       text: "with",
                     },
                     {
-                      text: "VIPS-TC",
+                      text: "Tauras",
                     },
                     {
-                      text: "Alumni!",
+                      text: "Army",
+                    },
+                    {
+                      text: "Boys",
+                    },
+                    {
+                      text: "Hostel!",
                     },
                   ]}
                 />
@@ -295,9 +301,9 @@ const Signup = () => {
                 Join Our Global Community
               </h2>
               <p className="text-gray-300 mb-4">
-                Our alumni network connects graduates across industries and
-                continents, providing exclusive access to career opportunities,
-                mentorship programs, and lifelong learning resources.
+                Our brotherhood network connects former hostelers across various fields,
+                providing exclusive access to mentorship programs, career guidance,
+                and lifelong bonds of brotherhood and service.
               </p>
               <div className="flex flex-wrap gap-3 mt-4">
                 <span className="px-3 py-1 bg-purple-900/40 text-purple-200 rounded-full text-sm border border-purple-800">
@@ -317,8 +323,8 @@ const Signup = () => {
 
             {/* CTA Button (Mobile Only) */}
             <motion.div variants={itemVariants} className="lg:hidden">
-              <button className="w-full py-3 px-6 bg-gradient-to-r from-vips-maroon to-vips-maroon-dark text-white rounded-full font-medium flex items-center justify-center gap-2 hover:from-vips-maroon-dark hover:to-vips-maroon transition-all duration-300 shadow-[0_0_15px_rgba(152,41,41,0.5)]">
-                Register Now
+              <button className="w-full py-3 px-6 bg-gradient-to-r from-red-800 to-red-900 text-white rounded-full font-medium flex items-center justify-center gap-2 hover:from-red-900 hover:to-red-800 transition-all duration-300 shadow-[0_0_15px_rgba(185,28,28,0.5)]">
+                Join Brotherhood
                 <ArrowRight size={18} />
               </button>
             </motion.div>

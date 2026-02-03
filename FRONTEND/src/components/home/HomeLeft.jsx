@@ -8,11 +8,11 @@ const HomeLeft = () => {
       {/* Image */}
       <div className="mb-4">
         <Image
-          src="/assets/building.jpg"
-          alt="Organization Building"
-          width={300}
-          height={200}
-          className="w-full h-48 object-cover rounded-lg"
+          src="/assets/TaurasLogo.jpg"
+          alt="Tauras Army Boys Hostel"
+          width={400}
+          height={300}
+          className="w-full h-64 object-cover rounded-lg"
         />
       </div>
 

@@ -1,51 +1,39 @@
-from rest_framework import viewsets, permissions, filters  # type: ignore
+from rest_framework import viewsets, permissions, filters, generics, status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes, action
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.pagination import LimitOffsetPagination
+
+from django.contrib.auth.models import User
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet
+from django_filters import CharFilter, NumberFilter
+
 from .serializers import serializers
-from cms.models import Blog, Job, Event, NewsFeed, Post, Comment, RegistrationRequest, AlumniVerificationScore
+from .serializers.serializers import RegistrationRequestSerializer
+from cms.models import (
+    Job, Event, NewsFeed, Post, Comment, RegistrationRequest, 
+    AlumniVerificationScore, Role, GalleryImage, GalleryCategory, 
+    GalleryTag, GalleryAlbum
+)
 from authorization.models import UserInfo
 from authorization.serializer import UserInfoSerializer
 from authorization.views import AlumniVerificationService
-from django.contrib.auth.models import User
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet  # type: ignore
-from django_filters import CharFilter  # type: ignore
-from django_filters import NumberFilter  # type: ignore
-from rest_framework.response import Response  # type: ignore
-from rest_framework.pagination import LimitOffsetPagination  # type: ignore
-from rest_framework import status  # type: ignore
-from rest_framework import generics
-from rest_framework.decorators import action
-from django.contrib.auth.models import User
-from cms.models import Role
 
+import json
 
-   
-class BlogFilter(FilterSet):
-
+class RegistrationRequestFilter(FilterSet):
     # To enable substring filtering (icontains) across multiple fields, you can define a custom FilterSet with CharFilter for each field, specifying the lookup_expr='icontains'. This allows you to filter multiple fields based on partial matches.
 
-    title = CharFilter(field_name="title", lookup_expr="icontains")
-    content = CharFilter(field_name="content", lookup_expr="icontains")
+    first_name = CharFilter(field_name="first_name", lookup_expr="icontains")
+    last_name = CharFilter(field_name="last_name", lookup_expr="icontains")
+    email = CharFilter(field_name="email", lookup_expr="icontains")
 
     class Meta:
-        model = Blog
-        fields = ["title", "content"]
+        model = RegistrationRequest
+        fields = ["first_name", "last_name", "email"]
 
 
 # Create your views here.
-class BlogsViewSet(viewsets.ModelViewSet):
-    queryset = Blog.objects.all()
-    serializer_class = serializers.BlogSerializer
-    permission_classes = [permissions.AllowAny]
-    filter_backends = [
-        DjangoFilterBackend,
-        filters.SearchFilter,
-        filters.OrderingFilter,
-    ]
-
-    search_fields = ["title", "content"]  # Allow full-text search on these fields
-    # filterset_fields = ['title']
-    filterset_class = BlogFilter  # Use the custom filter set
-    ordering_fields = ["created_at", "updated_at", "title"]
-    ordering = ["-created_at"]  # Default ordering
 
 
 
@@ -714,7 +702,6 @@ class RegistrationRequestView(viewsets.GenericViewSet):
         body = request.data
         if not instance:
             return Response({"status": status.HTTP_404_NOT_FOUND, "message": "Registration request not found."})
-
         instance.isApproved = False
         instance.rejectionReason = body.get('rejectionReason', '')
         instance.save()
@@ -723,3 +710,140 @@ class RegistrationRequestView(viewsets.GenericViewSet):
             "status": status.HTTP_200_OK,
             "message": "Registration request rejected.",
         })
+
+
+
+# Gallery API Views
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def gallery_images(request):
+    """Get all public gallery images with filtering"""
+    try:
+        # Get query parameters
+        category = request.GET.get('category', None)
+        tag = request.GET.get('tag', None)
+        search = request.GET.get('search', None)
+        
+        # Base queryset - only public images
+        queryset = GalleryImage.objects.filter(is_public=True).select_related('category', 'album', 'uploaded_by').prefetch_related('tags')
+        
+        # Apply filters
+        if category and category != 'all':
+            queryset = queryset.filter(category__category_type=category)
+        
+        if tag and tag != 'all':
+            queryset = queryset.filter(tags__name__icontains=tag)
+        
+        if search:
+            queryset = queryset.filter(
+                title__icontains=search
+            ).union(
+                queryset.filter(description__icontains=search)
+            ).union(
+                queryset.filter(people_tagged__icontains=search)
+            ).union(
+                queryset.filter(special_guests__icontains=search)
+            )
+        
+        # Order by priority and date
+        queryset = queryset.order_by('-priority', '-event_date', '-created_at')
+        
+        # Serialize data
+        images_data = []
+        for image in queryset:
+            # Increment view count
+            image.increment_view_count()
+            
+            images_data.append({
+                'id': image.id,
+                'title': image.title,
+                'description': image.description,
+                'image': request.build_absolute_uri(image.image.url) if image.image else None,
+                'thumbnail': request.build_absolute_uri(image.thumbnail.url) if image.thumbnail else None,
+                'category': image.category.category_type if image.category else None,
+                'tags': [tag.name for tag in image.tags.all()],
+                'event_date': image.event_date.isoformat(),
+                'event_location': image.event_location,
+                'people_tagged': image.people_tagged,
+                'special_guests': image.special_guests,
+                'view_count': image.view_count,
+                'likes': image.likes.count(),
+                'comments': image.comments.filter(is_approved=True).count(),
+                'photographer': image.photographer,
+                'priority': image.priority,
+                'is_featured': image.is_featured,
+            })
+        
+        return Response({
+            'status': status.HTTP_200_OK,
+            'count': len(images_data),
+            'results': images_data
+        })
+        
+    except Exception as e:
+        return Response({
+            'status': status.HTTP_500_INTERNAL_SERVER_ERROR,
+            'message': f'Error fetching gallery images: {str(e)}'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def gallery_categories(request):
+    """Get all active gallery categories with image counts"""
+    try:
+        categories = GalleryCategory.objects.filter(is_active=True).order_by('order', 'name')
+        
+        categories_data = []
+        for category in categories:
+            image_count = GalleryImage.objects.filter(category=category, is_public=True).count()
+            categories_data.append({
+                'id': category.id,
+                'name': category.name,
+                'category_type': category.category_type,
+                'color_code': category.color_code,
+                'count': image_count
+            })
+        
+        # Add "All Photos" option
+        total_count = GalleryImage.objects.filter(is_public=True).count()
+        all_photos = {
+            'id': 'all',
+            'name': 'All Photos',
+            'category_type': 'all',
+            'color_code': '#dc2626',
+            'count': total_count
+        }
+        
+        return Response({
+            'status': status.HTTP_200_OK,
+            'results': [all_photos] + categories_data
+        })
+        
+    except Exception as e:
+        return Response({
+            'status': status.HTTP_500_INTERNAL_SERVER_ERROR,
+            'message': f'Error fetching categories: {str(e)}'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def gallery_tags(request):
+    """Get featured gallery tags"""
+    try:
+        tags = GalleryTag.objects.filter(is_featured=True).order_by('tag_type', 'name')
+        
+        tags_data = [tag.name for tag in tags]
+        
+        return Response({
+            'status': status.HTTP_200_OK,
+            'results': tags_data
+        })
+        
+    except Exception as e:
+        return Response({
+            'status': status.HTTP_500_INTERNAL_SERVER_ERROR,
+            'message': f'Error fetching tags: {str(e)}'
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

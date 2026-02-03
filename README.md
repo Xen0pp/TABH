@@ -1,16 +1,16 @@
-# VIPS-TC Alumni Portal
+# TABH - Tauras Army Boys Hostel Portal
 
 ````markdown
-# Vivekananda Institute of Professional Studies - Technical Campus Alumni Portal
+# Tauras Army Boys Hostel (TABH) Portal
 
-This is the official repository for the VIPS-TC Alumni Portal.
-The project aims to connect alumni, foster networking, and facilitate communication
-between graduates and the technical campus community.
+This is the official repository for the TABH Hostel Portal.
+The project aims to connect former hostelers, foster brotherhood, and facilitate communication
+between former residents and the current hostel community.
 
 ## Project Structure
 
 ```plaintext
-Alumni-Portal/
+TABH-Portal/
 ├── BACKEND/                 # Django DRF (Backend)
 │   ├── CORE/                # Main Django project folder
 │   │   ├── api/             # Django app for APIs
@@ -49,8 +49,8 @@ Ensure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/atik65/Alumni-Portal.git
-   cd Alumni-Portal
+   git clone https://github.com/atik65/TABH-Portal.git
+   cd TABH-Portal
    ```
 
 2. **Backend Setup** (Django DRF):
@@ -188,7 +188,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Acknowledgments
 
-Special thanks to VIPS-TC for supporting this project.
+Special thanks to TABH for supporting this project.
 
 ---
 

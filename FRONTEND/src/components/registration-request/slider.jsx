@@ -30,48 +30,48 @@ const RegistrationRequestSlider = () => {
   const slides = [
     {
       id: 1,
-      title: "Welcome to VIPS-TC",
+      title: "Welcome to TABH",
       description:
-        "A leading institution for innovation and academic excellence",
-      imagePath: "/assets/building3.jpg",
+        "Tauras Army Boys Hostel - Building character, discipline and brotherhood",
+      imagePath: "/assets/Tabh1.png",
       icon: <GraduationCap size={28} />,
       stats: [
-        { value: "10K+", label: "Alumni" },
-        { value: "22+", label: "Years" },
+        { value: "500+", label: "Hostelers" },
+        { value: "20+", label: "Years" },
       ],
     },
     {
       id: 2,
-      title: "Campus Life",
+      title: "Hostel Life",
       description:
-        "Experience a vibrant community and state-of-the-art facilities",
-      imagePath: "/assets/building2.jpg",
+        "Experience brotherhood, discipline and camaraderie in our halls",
+      imagePath: "/assets/Tabh2.png",
       icon: <Building2 size={28} />,
       stats: [
-        { value: "30+", label: "Clubs" },
+        { value: "24/7", label: "Brotherhood" },
         
       ],
     },
     {
       id: 3,
-      title: "Global Network",
-      description: "Connect with alumni across industries and continents",
-      imagePath: "/assets/building.jpg", // Using the same image as a fallback
+      title: "Warrior Network",
+      description: "Connect with fellow hostelers serving the nation with honor",
+      imagePath: "/assets/Tabh3.png", // TABH hostel image
       icon: <Users size={28} />,
       stats: [
-        { value: "42", label: "Gold Medals" },
-        { value: "100+", label: "Companies" },
+        { value: "100%", label: "Honor" },
+        { value: "∞", label: "Brotherhood" },
       ],
     },
     {
       id: 4,
-      title: "Academic Excellence",
-      description: "Recognized for outstanding research and teaching",
-      imagePath: "/assets/building2.jpg", // Using the same image as a fallback
+      title: "Character Building",
+      description: "Molding future leaders with discipline and integrity",
+      imagePath: "/assets/Tabh2.png", // TABH hostel image
       icon: <Award size={28} />,
       stats: [
-        { value: "Top 5%", label: "Ranking" },
-        { value: "20+", label: "Programs" },
+        { value: "100%", label: "Discipline" },
+        { value: "∞", label: "Values" },
       ],
     },
   ];

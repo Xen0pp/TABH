@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,15 +30,15 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
 
-    /* VIPS-TC Custom Variables */
-    --vips-maroon: 152, 41, 41;
-    --vips-maroon-rgb: rgb(152, 41, 41);
-    --vips-maroon-light: rgba(152, 41, 41, 0.1);
-    --vips-maroon-medium: rgba(152, 41, 41, 0.8);
-    --vips-maroon-dark: rgb(120, 30, 30);
-    --vips-cream: #faf9f7;
-    --vips-gold: #d4af37;
-    --vips-gray: #f8f9fa;
+    /* TABH Custom Variables */
+    --tabh-red: 185, 28, 28;
+    --tabh-red-rgb: rgb(185, 28, 28);
+    --tabh-red-light: rgba(185, 28, 28, 0.1);
+    --tabh-red-medium: rgba(185, 28, 28, 0.8);
+    --tabh-red-dark: rgb(153, 27, 27);
+    --tabh-cream: #faf9f7;
+    --tabh-gold: #d4af37;
+    --tabh-gray: #f8f9fa;
     --vips-text-dark: #2d3748;
     --vips-text-light: #718096;
     
@@ -45,12 +47,12 @@
     --foreground: black;
     --core-bg: white;
     --base-bg: #e2e8f0;
-    --sidebar-bg: var(--vips-maroon-rgb);
-    --secondary-bg: var(--vips-maroon-rgb);
-    --light-bg: var(--vips-cream);
-    --light-secondary-bg: var(--vips-maroon-light);
+    --sidebar-bg: var(--tabh-red-rgb);
+    --secondary-bg: var(--tabh-red-rgb);
+    --light-bg: var(--tabh-cream);
+    --light-secondary-bg: var(--tabh-red-light);
     --base-text: var(--vips-text-dark);
-    --secondary-text: var(--vips-maroon-rgb);
+    --secondary-text: var(--tabh-red-rgb);
   }
 
   .dark {

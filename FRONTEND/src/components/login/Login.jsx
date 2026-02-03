@@ -196,21 +196,20 @@ const Login = () => {
               >
                 {/* <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
                   <GraduationCap size={32} className="text-white" />
-                </div> */}
-
-                {/* plage logo */}
+                </div>
+                {/* plague logo */}
                 <Image
-                  src="/assets/vips.jpg"
-                  alt="Plage Logo"
-                  width={200}
-                  height={200}
+                  src="/assets/TaurasLogo.jpg"
+                  alt="Tauras Army Boys Hostel Logo"
+                  width={400}
+                  height={400}
                   quality={100}
-                  className="w-28 h-24"
+                  className="w-52 h-40"
                 />
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2 font-orbitron">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-vips-maroon to-vips-maroon-dark">
-                  VIPS-TC Alumni Network
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-800 to-red-900">
+                  Tauras Army Boys Hostel
                 </span>
               </h1>
               <h1 className="text-xl md:text-xl lg:text-3xl font-semibold  ">
@@ -249,9 +248,9 @@ const Login = () => {
                 Join Our Global Community
               </h2>
               <p className="text-gray-300 mb-4">
-                Our alumni network connects graduates across industries and
-                continents, providing exclusive access to career opportunities,
-                mentorship programs, and lifelong learning resources.
+                Our brotherhood network connects former hostelers across various fields,
+                providing exclusive access to mentorship programs, career guidance,
+                and lifelong bonds of brotherhood and service.
               </p>
               <div className="flex flex-wrap gap-3 mt-4">
                 <span className="px-3 py-1 bg-purple-900/40 text-purple-200 rounded-full text-sm border border-purple-800">
@@ -353,7 +352,7 @@ export const LoginSignUpIntro = () => {
               text: "Your",
             },
             {
-              text: "Alumni",
+              text: "Brotherhood",
             },
             {
               text: "Network",
@@ -363,7 +362,7 @@ export const LoginSignUpIntro = () => {
       </h1>
 
       <p className="mt-7 text-sm">
-        Stay connected and take advantage of the exclusive benefits our alumni
+        Stay connected and take advantage of the exclusive benefits our hostel
         portal offers:
       </p>
 
@@ -371,7 +370,7 @@ export const LoginSignUpIntro = () => {
         <div className="flex items-center gap-2">
           <IoCheckmark />
           <p className="text-sm">
-            Build lasting connections with fellow alumni
+            Build lasting connections with fellow hostelers
           </p>
         </div>
 
@@ -546,7 +545,7 @@ const LoginForm = () => {
       {/* don't have an account?  */}
       <div>
         <p className="text-sm mt-3">
-          Don&apos;t have an account and you have VIPS-TC Email (@vipstc.edu.in) ?{" "}
+          Currently holding the fort in the hostel?{" "}
           <Link
             id="signup"
             href={"/signup"}
@@ -556,18 +555,18 @@ const LoginForm = () => {
           </Link>
         </p>
         <p className="text-sm mt-3">
-          Don&apos;t have an account and you are an Alumni without VIPS-TC Email
-          ?{" "}
+          An old warrior of these halls?
+          {" "}
           <Link
             id="registration-request"
             href={"/registration-request"}
             className="text-blue-500 hover:text-blue-700 font-medium"
           >
-            Apply for Alumni Registration
+            Apply for Hosteler Registration
           </Link>
         </p>
         <div className="text-xs mt-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
-          <p className="text-blue-800 font-medium mb-1">📋 Alumni Registration Info:</p>
+          <p className="text-blue-800 font-medium mb-1">📋 Hosteler Registration Info:</p>
           <ul className="text-blue-700 space-y-1">
             <li>• <strong>Auto-Approval:</strong> Complete all fields for instant approval</li>
             <li>• <strong>Required:</strong> Valid Student ID, Graduation Year, LinkedIn</li>
